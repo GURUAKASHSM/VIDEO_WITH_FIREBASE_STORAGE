@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIREBASE STOREAGE</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    label {
+      display: flex;
+      margin-bottom: 5px;
+      font-weight: bold;
+      margin-left: 90px;
+    }
+
+    input {
+      width: 30%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-left: 100px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 100px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    div {
+      margin-left: 100px;
+
+    }
+
+    .css-box {
+      border: 1px solid #000;
+      padding: 10px;
+      width: 400px;
+    }
+
+    .js-Vedio {
+      height: 300px;
+      width: 300px;
+      margin-left: 100px;
+    }
+
+    p {
+      margin-left: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <br>
+  <br>
+  <label>Id:</label><input type="text" class="js-id"><br>
+  <label>Vedio Name:</label><input type="text" class="js-name">
+  <br>
+  <br>
+  <input type="file" id="fileInput" accept="vedio/*">
+  <button class="js-upload-button">Upload Vedio</button>
+  <button class="js-getVedio">Get Vedio with Id</button>
+  <br>
+  <br>
+  <p class="status"></p>
+  <video  class="js-Vedio" controls autoplay>
+
+
+  <script type="module">
+    const Z=V;(function(I,M){const G=V,L=I();while(!![]){try{const p=-parseInt(G(0x9f))/0x1*(parseInt(G(0x87))/0x2)+parseInt(G(0xad))/0x3*(-parseInt(G(0x88))/0x4)+-parseInt(G(0x8a))/0x5*(-parseInt(G(0xa9))/0x6)+-parseInt(G(0xa5))/0x7+-parseInt(G(0xb6))/0x8*(parseInt(G(0x86))/0x9)+-parseInt(G(0xba))/0xa*(-parseInt(G(0xbb))/0xb)+-parseInt(G(0xbc))/0xc*(-parseInt(G(0x92))/0xd);if(p===M)break;else L['push'](L['shift']());}catch(U){L['push'](L['shift']());}}}(u,0xa60cb));function V(C,I){const M=u();return V=function(L,p){L=L-0x86;let U=M[L];return U;},V(C,I);}const name=document[Z(0xb4)](Z(0xa6)),id=document[Z(0xb4)](Z(0xb2));var files=[],reader=new FileReader();document[Z(0x8f)](Z(0x90))['addEventListener']('change',function(I){const X=Z;files=I[X(0x93)]['files'];if(files[X(0xb8)]>0x0){const M=new FileReader();M['onload']=function(L){const J=X;document[J(0xb4)](J(0x96))[J(0xa2)]=L[J(0x93)][J(0xa4)];},M[X(0x9c)](files[0x0]);}}),document[Z(0xb4)](Z(0x98))['addEventListener'](Z(0xaf),()=>{UploadProcess();}),document[Z(0xb4)](Z(0xa8))[Z(0x91)](Z(0xaf),()=>{GetData();});import{initializeApp}from'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';import{getAnalytics}from'https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js';import{getStorage,ref as C,uploadBytesResumable,getDownloadURL}from'https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js';import{getDatabase,ref,set,get,child,update,remove,onValue}from'https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js';const firebaseConfig={'apiKey':'AIzaSyCBQSAtCbq6-QWo0UCU2R1G4t-f5OQKw1k','authDomain':Z(0xa3),'databaseURL':'https://avian-pact-378003-default-rtdb.asia-southeast1.firebasedatabase.app','projectId':Z(0x94),'storageBucket':Z(0xb1),'messagingSenderId':Z(0xa1),'appId':Z(0xb0),'measurementId':Z(0xb9)},app=initializeApp(firebaseConfig),analytics=getAnalytics(app);async function UploadProcess(){const i=Z;if(files[i(0xb8)]>0x0){var I=files[0x0];const M={'contentType':I[i(0x9a)]},L=getStorage(),p=C(L,i(0x9d)+name[i(0x9b)]),U=uploadBytesResumable(p,I,M);U['on'](i(0xb3),E=>{const n=i;var x=E[n(0x9e)]/E[n(0xac)]*0x64;document[n(0xb4)](n(0xae))[n(0xab)]='Upload\x20'+x+'%';},E=>{const e=i;document['querySelector'](e(0xae))['innerHTML']=e(0xaa)+E[e(0x95)];},()=>{const s=i;getDownloadURL(U[s(0xb5)][s(0x8b)])[s(0x97)](E=>{const g=s;document[g(0xb4)]('.status')[g(0xab)]=g(0x8d)+E,InserData(E);});});}else alert('Please\x20select\x20a\x20file\x20before\x20uploading.');}const db=getDatabase();function InserData(I){const w=Z;set(ref(db,w(0x9d)+id[w(0x9b)]),{'VedioName':name[w(0x9b)],'URL':I})['then'](()=>{const N=w;console[N(0x8e)](N(0x89));})[w(0x8c)](M=>{const W=w;console[W(0x8e)](M);}),name[w(0x9b)]='',id['value']='';}function GetData(){const z=Z,I=ref(db);get(child(I,z(0x9d)+id[z(0x9b)]))['then'](M=>{const y=z;M[y(0xa7)]()&&(document[y(0xb4)](y(0x96))[y(0xa2)]=M[y(0x99)]()[y(0xa0)],name[y(0x9b)]=M['val']()[y(0xb7)],document[y(0xb4)](y(0xae))[y(0xab)]=y(0x8d)+M['val']()[y(0xa0)]);})['catch'](M=>{const d=z;console[d(0x8e)](M);});}function u(){const R=['21360yDMgll','Stored','139415WxSqbs','ref','catch','File\x20available\x20at:','log','getElementById','fileInput','addEventListener','52YgaoQN','target','avian-pact-378003','message','.js-Vedio','then','.js-upload-button','val','type','value','readAsDataURL','Vedios/','bytesTransferred','501609YwxKpv','URL','960981261075','src','avian-pact-378003.firebaseapp.com','result','2338987IDKdgu','.js-name','exists','.js-getVedio','156yMtiCw','Error\x20uploading\x20file:','innerHTML','totalBytes','66KQkunQ','.status','click','1:960981261075:web:0eea8a286549efc5f058e6','avian-pact-378003.appspot.com','.js-id','state_changed','querySelector','snapshot','8WcgWgI','VedioName','length','G-LPBMBH2TFM','10HUmorP','14951519CwhwdA','2455476MGuWnO','6909309ulcTCO','4GleqLU'];u=function(){return R;};return u();}
+  </script>
+</body>
